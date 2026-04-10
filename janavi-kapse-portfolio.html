@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Janavi Kapse | Chemical Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+/* ============================================================
+   ROOT & CSS VARIABLES — Molecular Luxury Theme
+   ============================================================ */
+:root {
+  --bg-deep:      #050d1a;
+  --bg-mid:       #071428;
+  --bg-card:      rgba(10, 25, 55, 0.72);
+  --accent-cyan:  #00e5ff;
+  --accent-teal:  #00b4d8;
+  --accent-lime:  #aaff00;
+  --accent-gold:  #f4c542;
+  --text-primary: #e8f4fd;
+  --text-muted:   #7fa8c9;
+  --border-glow:  rgba(0,229,255,0.18);
+  --gradient-hero: linear-gradient(135deg, #050d1a 0%, #0a1f45 50%, #091230 100%);
+  --gradient-accent: linear-gradient(90deg, #00e5ff, #0072ff);
+  --gradient-card: linear-gradient(135deg, rgba(0,229,255,0.07) 0%, rgba(0,114,255,0.04) 100%);
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+  --radius:       16px;
+  --glow-sm:      0 0 20px rgba(0,229,255,0.25);
+  --glow-md:      0 0 40px rgba(0,229,255,0.18);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+::selection { background: var(--accent-cyan); color: #000; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--accent-teal); border-radius: 3px; }
+
+/* ============================================================
+   CANVAS BACKGROUND
+   ============================================================ */
+#bg-canvas {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+  opacity: 0.35;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  height: 70px;
+  background: rgba(5, 13, 26, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border-glow);
+  transition: background 0.3s;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 1.35rem;
+  letter-spacing: -0.5px;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.25s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: var(--accent-cyan);
+  transform: scaleX(0); transition: transform 0.25s;
+}
+.nav-links a:hover { color: var(--accent-cyan); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* Hamburger */
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--accent-cyan); border-radius: 2px;
+  transition: all 0.3s;
+}
+.mobile-menu {
+  display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 999;
+  background: rgba(5,13,26,0.97); backdrop-filter: blur(20px);
+  padding: 1.5rem; flex-direction: column; gap: 1.2rem;
+  border-bottom: 1px solid var(--border-glow);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--font-mono); font-size: 0.8rem;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-muted); transition: color 0.2s;
+  padding: 0.5rem 0; border-bottom: 1px solid var(--border-glow);
+}
+.mobile-menu a:hover { color: var(--accent-cyan); }
+
+/* ============================================================
+   SECTIONS WRAPPER
+   ============================================================ */
+main { position: relative; z-index: 1; }
+section { padding: 100px clamp(1.5rem, 8vw, 8rem); }
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent-cyan); margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.section-label::before {
+  content: ''; display: block; width: 30px; height: 1px;
+  background: var(--accent-cyan);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 800; line-height: 1.1;
+  margin-bottom: 3rem;
+  color: var(--text-primary);
+}
+.section-title span {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: 70px;
+  background: var(--gradient-hero);
+  position: relative; overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+  width: 100%; max-width: 1300px; margin: 0 auto;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono); font-size: 0.7rem;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent-cyan);
+  border: 1px solid var(--border-glow);
+  border-radius: 100px; padding: 0.4rem 1rem;
+  margin-bottom: 1.5rem;
+  background: rgba(0,229,255,0.05);
+}
+.hero-badge i { font-size: 0.6rem; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 800; line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 1rem;
+}
+.hero-name .first { color: var(--text-primary); }
+.hero-name .last {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  display: block;
+}
+.hero-typewriter {
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: var(--accent-teal); min-height: 1.5em;
+  margin-bottom: 1.8rem;
+}
+.cursor {
+  display: inline-block; width: 2px; height: 1em;
+  background: var(--accent-cyan); margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+@keyframes blink { 50% { opacity: 0 } }
+
+.hero-desc {
+  font-size: 1rem; color: var(--text-muted);
+  max-width: 460px; line-height: 1.75;
+  margin-bottom: 2.5rem;
+}
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 2rem; border-radius: 100px;
+  font-family: var(--font-mono); font-size: 0.75rem;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s; border: none;
+  font-weight: 700;
+}
+.btn-primary {
+  background: var(--gradient-accent); color: #000;
+  box-shadow: 0 0 30px rgba(0,229,255,0.4);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px rgba(0,229,255,0.6);
+}
+.btn-outline {
+  background: transparent; color: var(--accent-cyan);
+  border: 1px solid rgba(0,229,255,0.4);
+}
+.btn-outline:hover {
+  background: rgba(0,229,255,0.08);
+  border-color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+
+/* Hero right panel */
+.hero-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 24px;
+  padding: 2.5rem;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--glow-md), inset 0 1px 0 rgba(255,255,255,0.05);
+  position: relative; overflow: hidden;
+}
+.hero-card::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(0,229,255,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.avatar-ring {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: var(--gradient-accent);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-family: var(--font-display);
+  font-size: 2.5rem; font-weight: 800;
+  color: #000; position: relative;
+  box-shadow: 0 0 0 4px rgba(0,229,255,0.2), var(--glow-sm);
+}
+.card-info-row {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 0.65rem 0; border-bottom: 1px solid var(--border-glow);
+  font-size: 0.88rem;
+}
+.card-info-row:last-child { border-bottom: none; }
+.card-info-row i {
+  width: 18px; text-align: center;
+  color: var(--accent-cyan); font-size: 0.85rem;
+}
+.card-info-row span { color: var(--text-muted); }
+
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+}
+.hero-scroll span {
+  font-family: var(--font-mono); font-size: 0.6rem;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);
+}
+.scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--accent-cyan), transparent);
+  animation: scrollDown 2s ease-in-out infinite;
+}
+@keyframes scrollDown { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+#about { background: var(--bg-mid); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 5rem; align-items: center;
+}
+.about-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-top: 2rem;
+}
+.stat-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius); padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.stat-card:hover { transform: translateY(-4px); box-shadow: var(--glow-sm); }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem; font-weight: 800;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.stat-label {
+  font-size: 0.78rem; color: var(--text-muted);
+  font-family: var(--font-mono); letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 0.3rem;
+}
+.about-text p { color: var(--text-muted); margin-bottom: 1.1rem; line-height: 1.8; }
+.about-text p strong { color: var(--text-primary); }
+.tag-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 0.4rem 0.9rem; border-radius: 100px;
+  border: 1px solid var(--border-glow);
+  background: rgba(0,229,255,0.05); color: var(--accent-cyan);
+  transition: background 0.2s;
+}
+.tag:hover { background: rgba(0,229,255,0.12); }
+
+/* ============================================================
+   SKILLS
+   ============================================================ */
+#skills { background: var(--bg-deep); }
+.skills-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.skill-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius); padding: 1.8rem;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  position: relative; overflow: hidden;
+}
+.skill-card::after {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--gradient-accent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.skill-card:hover { transform: translateY(-5px); box-shadow: var(--glow-sm); border-color: rgba(0,229,255,0.35); }
+.skill-card:hover::after { opacity: 1; }
+.skill-icon {
+  font-size: 1.6rem; margin-bottom: 1rem;
+  color: var(--accent-cyan);
+}
+.skill-name {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1rem; margin-bottom: 0.9rem;
+}
+.skill-bar-track {
+  height: 4px; background: rgba(255,255,255,0.07);
+  border-radius: 100px; overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%;
+  background: var(--gradient-accent);
+  border-radius: 100px;
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 0 8px rgba(0,229,255,0.5);
+}
+.skill-pct {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--accent-cyan); text-align: right;
+  margin-bottom: 0.4rem;
+}
+.skills-software { margin-top: 4rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.chip {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.6rem 1.2rem; border-radius: 100px;
+  background: rgba(0,229,255,0.06);
+  border: 1px solid rgba(0,229,255,0.2);
+  font-family: var(--font-mono); font-size: 0.75rem;
+  letter-spacing: 0.5px; color: var(--text-primary);
+  transition: all 0.25s;
+}
+.chip i { color: var(--accent-cyan); font-size: 0.75rem; }
+.chip:hover {
+  background: rgba(0,229,255,0.14);
+  border-color: var(--accent-cyan);
+  transform: scale(1.04);
+  box-shadow: var(--glow-sm);
+}
+
+/* ============================================================
+   INTERNSHIPS — TIMELINE
+   ============================================================ */
+#internships { background: var(--bg-mid); }
+.timeline { position: relative; max-width: 820px; }
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 10px;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, var(--accent-cyan), transparent);
+}
+.timeline-item {
+  position: relative; padding-left: 3rem; margin-bottom: 3.5rem;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute; left: -8px; top: 6px;
+  width: 17px; height: 17px; border-radius: 50%;
+  background: var(--bg-deep);
+  border: 2px solid var(--accent-cyan);
+  box-shadow: var(--glow-sm);
+  z-index: 1;
+}
+.timeline-dot::after {
+  content: ''; position: absolute; inset: 3px;
+  border-radius: 50%; background: var(--accent-cyan);
+}
+.tl-date {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent-teal); margin-bottom: 0.5rem;
+}
+.tl-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius); padding: 2rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.tl-card:hover { transform: translateX(6px); box-shadow: var(--glow-sm); }
+.tl-role {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.25rem; margin-bottom: 0.25rem;
+}
+.tl-company {
+  font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent-cyan); margin-bottom: 1rem;
+}
+.tl-points { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.tl-points li {
+  display: flex; gap: 0.7rem; align-items: flex-start;
+  font-size: 0.9rem; color: var(--text-muted);
+}
+.tl-points li::before {
+  content: '→'; color: var(--accent-cyan);
+  flex-shrink: 0; margin-top: 1px; font-size: 0.85rem;
+}
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+#projects { background: var(--bg-deep); }
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.8rem;
+}
+.project-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px; overflow: hidden;
+  position: relative; transition: transform 0.35s, box-shadow 0.35s;
+  cursor: default;
+}
+.project-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: var(--glow-md); }
+.project-card-top {
+  padding: 2rem 2rem 1.2rem;
+  position: relative;
+}
+.project-num {
+  position: absolute; top: 1.5rem; right: 1.8rem;
+  font-family: var(--font-display); font-size: 4rem; font-weight: 800;
+  color: rgba(0,229,255,0.06); line-height: 1; user-select: none;
+}
+.project-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(0,229,255,0.1);
+  border: 1px solid var(--border-glow);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; color: var(--accent-cyan);
+  margin-bottom: 1.2rem;
+}
+.project-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.15rem; margin-bottom: 0.7rem; line-height: 1.3;
+}
+.project-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+.project-card-bottom {
+  padding: 1rem 2rem 1.5rem;
+  border-top: 1px solid var(--border-glow);
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+}
+.project-tag {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 0.3rem 0.75rem; border-radius: 100px;
+  background: rgba(170,255,0,0.07);
+  border: 1px solid rgba(170,255,0,0.2);
+  color: var(--accent-lime);
+}
+.project-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(0,229,255,0.04) 100%);
+  opacity: 0; transition: opacity 0.4s;
+  pointer-events: none; border-radius: 20px;
+}
+.project-card:hover::after { opacity: 1; }
+
+/* ============================================================
+   EDUCATION
+   ============================================================ */
+#education { background: var(--bg-mid); }
+.edu-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.edu-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius); padding: 2rem;
+  position: relative; transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+}
+.edu-card:hover { transform: translateY(-5px); box-shadow: var(--glow-sm); }
+.edu-card-accent {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--gradient-accent);
+}
+.edu-level {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent-cyan); margin-bottom: 0.7rem;
+}
+.edu-degree {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.1rem; margin-bottom: 0.4rem; line-height: 1.3;
+}
+.edu-year { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; }
+.edu-cgpa {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(0,229,255,0.08); border: 1px solid var(--border-glow);
+  border-radius: 100px; padding: 0.35rem 0.9rem;
+  font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-cyan);
+}
+.certs-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem; margin-top: 3rem;
+}
+.cert-card {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--gradient-card);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius); padding: 1.2rem 1.5rem;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.cert-card:hover { transform: translateY(-3px); box-shadow: var(--glow-sm); }
+.cert-icon {
+  width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+  background: rgba(244,197,66,0.1); border: 1px solid rgba(244,197,66,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: var(--accent-gold);
+}
+.cert-name { font-size: 0.85rem; font-weight: 500; line-height: 1.4; }
+.extra-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; }
+.extra-chip {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.75rem 1.4rem; border-radius: var(--radius);
+  background: rgba(0,229,255,0.05); border: 1px solid var(--border-glow);
+  font-size: 0.9rem; transition: all 0.25s;
+}
+.extra-chip i { color: var(--accent-cyan); }
+.extra-chip:hover { background: rgba(0,229,255,0.1); transform: translateY(-2px); }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+#contact { background: var(--bg-deep); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+}
+.contact-info { display: flex; flex-direction: column; gap: 1.2rem; }
+.contact-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--gradient-card);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.contact-item:hover { transform: translateX(5px); box-shadow: var(--glow-sm); }
+.contact-icon {
+  width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+  background: rgba(0,229,255,0.08); border: 1px solid var(--border-glow);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent-cyan); font-size: 1rem;
+}
+.contact-detail-label {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 0.2rem;
+}
+.contact-detail-val { font-size: 0.9rem; color: var(--text-primary); }
+.contact-detail-val a { transition: color 0.2s; }
+.contact-detail-val a:hover { color: var(--accent-cyan); }
+.contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-group label {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted);
+}
+.form-group input,
+.form-group textarea {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-glow);
+  border-radius: 10px; padding: 0.85rem 1.1rem;
+  font-family: var(--font-body); font-size: 0.9rem;
+  color: var(--text-primary); outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  resize: vertical;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(127,168,201,0.4); }
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(0,229,255,0.08);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.social-bar { display: flex; gap: 1rem; margin-top: 1.5rem; }
+.social-link {
+  width: 44px; height: 44px; border-radius: 10px;
+  border: 1px solid var(--border-glow);
+  background: rgba(0,229,255,0.05);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; color: var(--text-muted);
+  transition: all 0.25s;
+}
+.social-link:hover {
+  color: var(--accent-cyan); border-color: var(--accent-cyan);
+  background: rgba(0,229,255,0.1); transform: translateY(-3px);
+  box-shadow: var(--glow-sm);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  text-align: center; padding: 2rem 1rem;
+  border-top: 1px solid var(--border-glow);
+  font-family: var(--font-mono); font-size: 0.7rem;
+  letter-spacing: 1px; color: var(--text-muted);
+  background: var(--bg-deep);
+}
+footer span { color: var(--accent-cyan); }
+
+/* ============================================================
+   REVEAL ANIMATIONS
+   ============================================================ */
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1),
+              transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.35s; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-card { max-width: 480px; margin: 0 auto; }
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  section { padding: 70px 1.4rem; }
+  .hero-grid { padding-top: 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav>
+  <div class="nav-logo">JK</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#internships">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#skills" onclick="toggleMenu()">Skills</a>
+  <a href="#internships" onclick="toggleMenu()">Experience</a>
+  <a href="#projects" onclick="toggleMenu()">Projects</a>
+  <a href="#education" onclick="toggleMenu()">Education</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<main>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-badge"><i class="fa-solid fa-circle"></i> Available for Opportunities</div>
+      <h1 class="hero-name">
+        <span class="first">Janavi</span>
+        <span class="last">Kapse</span>
+      </h1>
+      <div class="hero-typewriter"><span id="typed-text"></span><span class="cursor"></span></div>
+      <p class="hero-desc">
+        Final-year B.Tech Chemical Engineering student with hands-on expertise in process engineering, simulation tools, and industrial calculations. Passionate about sustainability and solving real-world challenges.
+      </p>
+      <div class="hero-cta">
+        <a href="resume.pdf" download class="btn btn-primary">
+          <i class="fa-solid fa-download"></i> Download Resume
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <i class="fa-regular fa-envelope"></i> Get In Touch
+        </a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="avatar-ring"><img src="photo.png" alt="My Photo" style="width:100%; height:100%; object-fit:cover; object-position:50% 20%;border-radius:50%;"></div>
+        <div class="card-info-row">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>B.Tech Chemical Engineering</span>
+        </div>
+        <div class="card-info-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Roha, Maharashtra, India</span>
+        </div>
+        <div class="card-info-row">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91-7058193916</span>
+        </div>
+        <div class="card-info-row">
+          <i class="fa-regular fa-envelope"></i>
+          <span>janavikapse07@gmail.com</span>
+        </div>
+        <div class="card-info-row">
+          <i class="fa-brands fa-linkedin"></i>
+          <a href="https://linkedin.com/in/janavi-kapse-429439310" target="_blank" style="color:var(--accent-cyan)">linkedin.com/in/janavi-kapse</a>
+        </div>
+        <div class="card-info-row">
+          <i class="fa-solid fa-star"></i>
+          <span>CGPA: <strong style="color:var(--accent-cyan)">8.92</strong> / 10</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="section-label">01 — Profile</div>
+      <h2 class="section-title">About <span>Me</span></h2>
+      <div class="about-stats">
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-num">8.92</div>
+          <div class="stat-label">CGPA</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Internships</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-text reveal reveal-delay-1">
+      <p>I am a <strong>final-year B.Tech Chemical Engineering student</strong> with a strong technical foundation built through rigorous coursework and hands-on internship experience in leading industrial organizations.</p>
+      <p>My work spans <strong>line sizing, gas pressure drop calculations, PSV sizing, cooling tower calculations, and heat load analysis</strong>. I've also worked extensively with simulation platforms including Aspen HYSYS, Aspen Plus, DWSIM, and ANSYS Fluent.</p>
+      <p>Beyond technical skills, I'm deeply passionate about <strong>process engineering, sustainability, and circular economy principles</strong> — as reflected in my research projects on biodiesel production and silica extraction from agricultural waste.</p>
+      <div class="tag-row">
+        <span class="tag">Process Engineering</span>
+        <span class="tag">Sustainability</span>
+        <span class="tag">Simulation</span>
+        <span class="tag">PFD & P&ID</span>
+        <span class="tag">Industrial Calcs</span>
+        <span class="tag">IIChE Member</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SKILLS
+     ============================================================ -->
+<section id="skills">
+  <div class="section-label reveal">02 — Expertise</div>
+  <h2 class="section-title reveal reveal-delay-1">Technical <span>Skills</span></h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon"><i class="fa-solid fa-ruler"></i></div>
+      <div class="skill-name">Line Sizing Calculations</div>
+      <div class="skill-pct">92%</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+    </div>
+    <div class="skill-card reveal reveal-delay-1">
+      <div class="skill-icon"><i class="fa-solid fa-wind"></i></div>
+      <div class="skill-name">Gas Pressure Drop</div>
+      <div class="skill-pct">88%</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+    </div>
+    <div class="skill-card reveal reveal-delay-2">
+      <div class="skill-icon"><i class="fa-solid fa-gauge-high"></i></div>
+      <div class="skill-name">PSV Sizing</div>
+      <div class="skill-pct">85%</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon"><i class="fa-solid fa-temperature-half"></i></div>
+      <div class="skill-name">Cooling Tower Calculations</div>
+      <div class="skill-pct">87%</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="87"></div></div>
+    </div>
+    <div class="skill-card reveal reveal-delay-1">
+      <div class="skill-icon"><i class="fa-solid fa-fire"></i></div>
+      <div class="skill-name">Heat Load Calculations</div>
+      <div class="skill-pct">84%</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="84"></div></div>
+    </div>
+    <div class="skill-card reveal reveal-delay-2">
+      <div class="skill-icon"><i class="fa-solid fa-diagram-project"></i></div>
+      <div class="skill-name">PFD & P&ID</div>
+      <div class="skill-pct">90%</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+    </div>
+  </div>
+  <div class="skills-software reveal">
+    <div class="section-label" style="margin-bottom:1rem">Software & Simulation Tools</div>
+    <div class="chips">
+      <div class="chip"><i class="fa-solid fa-flask"></i> Aspen HYSYS</div>
+      <div class="chip"><i class="fa-solid fa-flask"></i> Aspen Plus</div>
+      <div class="chip"><i class="fa-solid fa-atom"></i> DWSIM</div>
+      <div class="chip"><i class="fa-solid fa-wind"></i> ANSYS Fluent</div>
+      <div class="chip"><i class="fa-solid fa-calculator"></i> Scilab</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INTERNSHIPS
+     ============================================================ -->
+<section id="internships">
+  <div class="section-label reveal">03 — Experience</div>
+  <h2 class="section-title reveal reveal-delay-1">Professional <span>Journey</span></h2>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="tl-date">2025 </div>
+      <div class="tl-card">
+        <div class="tl-role">Process Engineering Intern</div>
+        <div class="tl-company"><i class="fa-solid fa-building"></i> &nbsp;Biopharmax India Pvt Ltd</div>
+        <ul class="tl-points">
+          <li>Created comprehensive equipment lists using P&IDs for pharmaceutical process lines</li>
+          <li>Performed detailed line sizing and gas pressure drop calculations for process piping</li>
+          <li>Executed PSV (Pressure Safety Valve) sizing for critical safety systems</li>
+          <li>Conducted cooling tower performance and heat load calculations</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-1">
+      <div class="timeline-dot"></div>
+      <div class="tl-date">2022</div>
+      <div class="tl-card">
+        <div class="tl-role">Process & Production Intern</div>
+        <div class="tl-company"><i class="fa-solid fa-industry"></i> &nbsp;Excel Industries Pvt Ltd</div>
+        <ul class="tl-points">
+          <li>Gained industry exposure across both process and production departments</li>
+          <li>Observed real-world implementation of chemical manufacturing processes</li>
+          <li>Understood plant operations, safety protocols, and production management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECTS
+     ============================================================ -->
+<section id="projects">
+  <div class="section-label reveal">04 — Research</div>
+  <h2 class="section-title reveal reveal-delay-1">Featured <span>Projects</span></h2>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-card-top">
+        <div class="project-num">01</div>
+        <div class="project-icon"><i class="fa-solid fa-droplet"></i></div>
+        <div class="project-title">Production of Biodiesel from Waste Cooking Oil</div>
+        <div class="project-desc">
+          Developed a sustainable biodiesel production process using transesterification of waste cooking oil. Focused on waste valorization, reaction optimization, and end-product quality to promote circular economy principles.
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <span class="project-tag">Transesterification</span>
+        <span class="project-tag">Sustainability</span>
+        <span class="project-tag">Waste Management</span>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-card-top">
+        <div class="project-num">02</div>
+        <div class="project-icon"><i class="fa-solid fa-seedling"></i></div>
+        <div class="project-title">Removal of Silica from Agro Waste</div>
+        <div class="project-desc">
+          Extracted high-purity silica from coconut husk ash using chemical treatment and purification techniques. Explores value addition from agricultural by-products, reducing waste and enabling industrial use of bio-silica.
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <span class="project-tag">Silica Extraction</span>
+        <span class="project-tag">Agro Waste</span>
+        <span class="project-tag">Purification</span>
+      </div>
+    </div>
+<div class="project-card reveal reveal-delay-1">
+      <div class="project-card-top">
+        <div class="project-num">03</div>
+        <div class="project-icon"><i class="fa-solid fa-seedling"></i></div>
+        <div class="project-title">Simulation of Natural Gas Sweetening Using Amine Solvents</div>
+        <div class="project-desc">
+          Developed a simulation-based natural gas sweetening process to remove acid gases (CO₂ and H₂S) using amine absorption. Focused on process modeling, parameter analysis, and efficiency optimization using Aspen HYSYS to improve gas quality, safety, and environmental compliance.
+        </div>
+      </div>
+      <div class="project-card-bottom">
+        <span class="project-tag">Gas Sweetening</span>
+        <span class="project-tag">Process Simulation</span>
+        <span class="project-tag">Aspen HYSYS</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============================================================
+     EDUCATION
+     ============================================================ -->
+<section id="education">
+  <div class="section-label reveal">05 — Academics</div>
+  <h2 class="section-title reveal reveal-delay-1">Education & <span>Credentials</span></h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-card-accent"></div>
+      <div class="edu-level">Undergraduate Degree</div>
+      <div class="edu-degree">B.Tech — Chemical Engineering </div>
+      <div class="edu-year">2022 – 2026</div>
+<div class="edu-year">MIT Academy of Engineering, Pune</div>
+      <div class="edu-cgpa"><i class="fa-solid fa-star" style="color:var(--accent-gold);font-size:0.75rem">
+ </i> CGPA: 8.92</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-1">
+      <div class="edu-card-accent"></div>
+      <div class="edu-level">Diploma</div>
+      <div class="edu-degree">Diploma — Chemical Engineering</div>
+      <div class="edu-year">2020-2023</div>
+<div class="edu-year">DBATU Lonere,Raigad</div>
+      <div class="edu-cgpa"><i class="fa-solid fa-star" style="color:var(--accent-gold);font-size:0.75rem"></i> CGPA: 7.81</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-2">
+      <div class="edu-card-accent"></div>
+      <div class="edu-level">Secondary School</div>
+      <div class="edu-degree">10th Standard (SSC)</div>
+      <div class="edu-year">Completed</div>
+<div class="edu-year">RGPM Vidyalay, Khamb, raigad </div>
+      <div class="edu-cgpa"><i class="fa-solid fa-star" style="color:var(--accent-gold);font-size:0.75rem"></i> Score: 88.2%</div>
+    </div>
+  </div>
+
+  <div style="margin-top:4rem">
+    <div class="section-label reveal" style="margin-bottom:1.5rem">Certifications</div>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+        <div class="cert-name">NPTEL — Sustainable Energy Technology</div>
+      </div>
+      <div class="cert-card reveal reveal-delay-1">
+        <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+        <div class="cert-name">Aspen HYSYS Refresher Course</div>
+      </div>
+      <div class="cert-card reveal reveal-delay-2">
+        <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+        <div class="cert-name">Aspen Plus Course</div>
+      </div>
+      <div class="cert-card reveal reveal-delay-3">
+        <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+        <div class="cert-name">SANKALP 1.0 Conference Participation</div>
+      </div>
+ <div class="cert-card reveal reveal-delay-4">
+        <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+        <div class="cert-name">Claude 101 Anthropic Course</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:4rem">
+    <div class="section-label reveal" style="margin-bottom:1rem">Extra-Curricular Activities</div>
+    <div class="extra-row reveal reveal-delay-1">
+      <div class="extra-chip"><i class="fa-solid fa-hands-helping"></i> Volunteer — PRAKALP 2024</div>
+      <div class="extra-chip"><i class="fa-solid fa-flask"></i> Member — IIChE (Indian Institute of Chemical Engineers)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section id="contact">
+  <div class="section-label reveal">06 — Connect</div>
+  <h2 class="section-title reveal reveal-delay-1">Get In <span>Touch</span></h2>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info">
+        <div class="contact-item reveal">
+          <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-val"><a href="mailto:janavikapse07@gmail.com">janavikapse07@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item reveal reveal-delay-1">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <div class="contact-detail-label">Phone</div>
+            <div class="contact-detail-val">+91-7058193916</div>
+          </div>
+        </div>
+        <div class="contact-item reveal reveal-delay-2">
+          <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <div class="contact-detail-label">Location</div>
+            <div class="contact-detail-val">Pune, Maharashtra, India</div>
+          </div>
+        </div>
+        <div class="contact-item reveal reveal-delay-3">
+          <div class="contact-icon"><i class="fa-brands fa-linkedin"></i></div>
+          <div>
+            <div class="contact-detail-label">LinkedIn</div>
+            <div class="contact-detail-val">
+              <a href="https://linkedin.com/in/janavi-kapse-429439310" target="_blank">linkedin.com/in/janavi-kapse</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="social-bar reveal" style="margin-top:1.5rem">
+        <a href="https://linkedin.com/in/janavi-kapse-429439310" target="_blank" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:janavikapse07@gmail.com" class="social-link" title="Email"><i class="fa-regular fa-envelope"></i></a>
+        <a href="tel:+917058193916" class="social-link" title="Phone"><i class="fa-solid fa-phone"></i></a>
+        <a href="resume.pdf" download class="social-link" title="Download Resume">
+  <i class="fa-solid fa-file-arrow-down"></i>
+</a>
+      </div>
+    </div>
+
+    <div class="contact-form reveal reveal-delay-1">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full Name" />
+        </div>
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="email" placeholder="email@example.com" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <input type="text" placeholder="What's this about?" />
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea rows="6" placeholder="Write your message here..."></textarea>
+      </div>
+      <button class="btn btn-primary" style="align-self:flex-start" onclick="handleFormSubmit(this)">
+        <i class="fa-solid fa-paper-plane"></i> Send Message
+      </button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Designed & Built with ♥ by <span>Janavi Kapse</span> &nbsp;·&nbsp; Chemical Engineer &nbsp;·&nbsp; Pune, India &nbsp;·&nbsp; 2025</p>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ─── BACKGROUND CANVAS — Animated Hex Grid ─── */
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, nodes = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function drawHex(cx, cy, r, alpha) {
+    ctx.beginPath();
+    for (let i = 0; i < 6; i++) {
+      const a = Math.PI / 180 * (60 * i - 30);
+      const x = cx + r * Math.cos(a);
+      const y = cy + r * Math.sin(a);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = `rgba(0,229,255,${alpha})`;
+    ctx.lineWidth = 0.6;
+    ctx.stroke();
+  }
+
+  function buildNodes() {
+    nodes = [];
+    const r = 38;
+    const cols = Math.ceil(W / (r * 1.73)) + 2;
+    const rows = Math.ceil(H / (r * 1.5)) + 2;
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        nodes.push({
+          x: col * r * 1.73 + (row % 2 === 0 ? 0 : r * 0.87),
+          y: row * r * 1.5, r,
+          alpha: 0.04 + Math.random() * 0.08,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.005 + Math.random() * 0.008
+        });
+      }
+    }
+  }
+
+  let t = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    t++;
+    nodes.forEach(n => {
+      drawHex(n.x, n.y, n.r, n.alpha * (0.5 + 0.5 * Math.sin(t * n.speed + n.phase)));
+    });
+    requestAnimationFrame(draw);
+  }
+
+  resize(); buildNodes(); draw();
+  window.addEventListener('resize', () => { resize(); buildNodes(); });
+})();
+
+/* ─── TYPEWRITER EFFECT ─── */
+const phrases = ['Chemical Engineer', 'Process Enthusiast', 'Simulation Expert', 'Sustainability Advocate', 'Problem Solver'];
+let pIdx = 0, cIdx = 0, deleting = false;
+const typedEl = document.getElementById('typed-text');
+
+function type() {
+  const current = phrases[pIdx];
+  if (!deleting) {
+    typedEl.textContent = current.slice(0, ++cIdx);
+    if (cIdx === current.length) { deleting = true; setTimeout(type, 1800); return; }
+  } else {
+    typedEl.textContent = current.slice(0, --cIdx);
+    if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; setTimeout(type, 400); return; }
+  }
+  setTimeout(type, deleting ? 55 : 90);
+}
+setTimeout(type, 800);
+
+/* ─── SCROLL REVEAL ─── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ─── SKILL BAR ANIMATION ─── */
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const fill = e.target.querySelector('.skill-bar-fill');
+      if (fill) fill.style.width = fill.dataset.width + '%';
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.skill-card').forEach(c => barObs.observe(c));
+
+/* ─── MOBILE MENU ─── */
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ─── NAV ACTIVE HIGHLIGHT ─── */
+const navSections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let found = '';
+  navSections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) found = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.style.color = a.getAttribute('href') === `#${found}` ? 'var(--accent-cyan)' : '';
+  });
+});
+
+/* ─── CONTACT FORM BUTTON ─── */
+function handleFormSubmit(btn) {
+  btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
+  btn.style.background = 'linear-gradient(90deg, #00e5c9, #00b4a2)';
+  setTimeout(() => {
+    btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+    btn.style.background = '';
+  }, 3000);
+}
+</script>
+</body>
+</html>
